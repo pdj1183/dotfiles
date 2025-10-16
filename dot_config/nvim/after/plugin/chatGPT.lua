@@ -1,0 +1,4 @@
+-- local chatgpt = require("chatgpt")
+-- vim.keymap.set("v", "<leader>pe", function()
+--     chatgpt.edit_with_instructions()
+-- end)

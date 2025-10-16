@@ -1,0 +1,24 @@
+font-family = "JetBrains Mono"
+font-size = 14
+font-thicken = true
+
+background-opacity = 0.7
+background-blur-radius = 20
+
+keybind=ctrl+tab=last_tab
+
+window-height = 67
+window-width = 255
+
+link-url = true
+window-theme = dark
+window-save-state = always
+
+theme = Kanagawa Wave
+
+macos-icon = custom-style
+macos-icon-frame = plastic
+macos-icon-ghost-color = FFFFFF
+macos-icon-screen-color = 000000
+
+auto-update-channel = stable
