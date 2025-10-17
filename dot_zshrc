@@ -12,21 +12,25 @@ fi
 export ZSH="${ZSH:-$HOME/.oh-my-zsh}"
 export ZSH_DISABLE_COMPFIX=true
 ZSH_THEME="powerlevel10k/powerlevel10k"
-plugins=(git)
 
-# Make Docker completions available before compinit
+# Put any extra completion dirs *before* OMZ so compinit sees them.
+# Docker completions
 if [[ -d "$HOME/.docker/completions" ]]; then
   fpath=("$HOME/.docker/completions" $fpath)
 fi
 
-# Initialize OMZ + completion
-if [[ -r "$ZSH/oh-my-zsh.sh" ]]; then
-  source "$ZSH/oh-my-zsh.sh"
-fi
-autoload -Uz compinit && compinit -C
+plugins=(
+  git
+  vi-mode
+)
 
-# ----- Prompt -----
-# Load Powerlevel10k prompt if available
+source "$ZSH/oh-my-zsh.sh"
+
+# Make ESC fast and force vi keymap after plugins/themes load
+export KEYTIMEOUT=1
+bindkey -v
+
+# ----- Prompt (Powerlevel10k) -----
 if [[ -r "$HOME/.p10k.zsh" ]]; then
   source "$HOME/.p10k.zsh"
 fi
@@ -40,14 +44,12 @@ SAVEHIST=100000
 
 # ----- PATH -----
 export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
-# mysql client via brew (guarded)
 if command -v brew >/dev/null 2>&1; then
   MYPFX="$(brew --prefix mysql-client 2>/dev/null || true)"
   [[ -n "$MYPFX" ]] && export PATH="$MYPFX/bin:$PATH"
 fi
 
 # ----- Java -----
-# Correct JAVA_HOME (no /bin at the end)
 if [[ -d "/Library/Java/JavaVirtualMachines/temurin-24.jdk/Contents/Home" ]]; then
   export JAVA_HOME="/Library/Java/JavaVirtualMachines/temurin-24.jdk/Contents/Home"
   export PATH="$JAVA_HOME/bin:$PATH"
@@ -55,10 +57,7 @@ fi
 
 # ----- NVM (lazy) -----
 export NVM_DIR="$HOME/.nvm"
-_nvm_lazy_load() {
-  unset -f node npm npx
-  [[ -s "$NVM_DIR/nvm.sh" ]] && . "$NVM_DIR/nvm.sh"
-}
+_nvm_lazy_load() { unset -f node npm npx; [[ -s "$NVM_DIR/nvm.sh" ]] && . "$NVM_DIR/nvm.sh"; }
 node() { _nvm_lazy_load; node "$@"; }
 npm()  { _nvm_lazy_load; npm  "$@"; }
 npx()  { _nvm_lazy_load; npx  "$@"; }
@@ -75,20 +74,13 @@ conda() {
 }
 
 # ----- Tools -----
-# fzf keybindings
 [[ -f "$HOME/.fzf.zsh" ]] && source "$HOME/.fzf.zsh"
-
-# autojump
 if command -v brew >/dev/null 2>&1; then
   AJ="$(brew --prefix)/etc/profile.d/autojump.sh"
   [[ -r "$AJ" ]] && . "$AJ"
 fi
-
-# jenv
 export PATH="$HOME/.jenv/bin:$PATH"
 command -v jenv >/dev/null 2>&1 && eval "$(jenv init -)"
-
-# zoxide (uses `cd` command)
 command -v zoxide >/dev/null 2>&1 && eval "$(zoxide init --cmd cd zsh)"
 
 # ESP-IDF helper
@@ -98,7 +90,13 @@ alias get_idf='. "$HOME/esp/esp-idf/export.sh"'
 alias ll='ls -lah'
 alias gs='git status -sb'
 alias vim='nvim'
+alias dot="chezmoi"
 
-# ----- Local overrides & secrets (do NOT commit real values) -----
-# Chezmoi: keep a non-tracked ~/.zshrc.local or render from a template with env lookups.
+# ----- Local overrides -----
 [[ -r "$HOME/.zshrc.local" ]] && source "$HOME/.zshrc.local"
+
+# Aerospace + fzf helper
+ff() {
+  aerospace list-windows --all | \
+  fzf --bind 'enter:execute(bash -c "aerospace focus --window-id {1}")+abort'
+}
