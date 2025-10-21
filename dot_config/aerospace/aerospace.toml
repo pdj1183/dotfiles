@@ -53,6 +53,14 @@ if.app-name-regex-substring = 'messages'
 run = 'layout floating'
 
 [[on-window-detected]]
+if.app-name-regex-substring = 'passwords'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-name-regex-substring = 'music'
+run = 'layout floating'
+
+[[on-window-detected]]
 if.app-name-regex-substring = 'finder'
 run = 'layout floating'
 
@@ -74,10 +82,6 @@ run = 'layout floating'
 
 [[on-window-detected]]
 if.app-name-regex-substring = 'mail'
-run = 'layout floating'
-
-[[on-window-detected]]
-if.app-name-regex-substring = 'trello'
 run = 'layout floating'
 
 [[on-window-detected]]

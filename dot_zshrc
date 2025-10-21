@@ -22,7 +22,15 @@ fi
 plugins=(
   git
   vi-mode
+  chezmoi
+  macos
+  zsh-autosuggestions
+  zsh-syntax-highlighting
 )
+
+# zsh-autosuggestions
+ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE="20"
+ZSH_AUTOSUGGEST_USE_ASYNC=1
 
 source "$ZSH/oh-my-zsh.sh"
 
