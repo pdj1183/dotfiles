@@ -6,7 +6,7 @@ return {
     event = "VeryLazy",
     opts = {
       -- Adjust patterns to your repos; these work well for JS/TS/Node/Go/Rust/etc.
-      patterns = { ".git", "package.json", "pyproject.toml", "go.mod", "Cargo.toml", "Makefile" },
+      patterns = { ".git", ".github", "package.json", "pyproject.toml", "go.mod", "Cargo.toml", "Makefile" },
       detection_methods = { "pattern", "lsp" },
       manual_mode = false, -- auto-detect
       exclude_dirs = { "~/.local/*", "/tmp/*" },

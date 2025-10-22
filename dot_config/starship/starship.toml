@@ -1,38 +1,17 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
 format = """
-[](red)\
-$os\
-$username\
-[](bg:peach fg:red)\
-$directory\
-[](bg:yellow fg:peach)\
-$git_branch\
-$git_status\
-[](fg:yellow bg:green)\
-$c\
-$rust\
-$golang\
-$nodejs\
-$php\
-$java\
-$kotlin\
-$haskell\
-$python\
-[](fg:green bg:sapphire)\
-$conda\
-[](fg:sapphire bg:lavender)\
-$time\
-[ ](fg:lavender)\
-$cmd_duration\
+[╭](fg:overlay0)\
+$os$username$directory$git_branch$git_status$status$c$rust$golang$nodejs$php$java$kotlin$haskell$python$conda$time$cmd_duration\
 $line_break\
+[╰](fg:overlay0)\
 $character"""
 
 palette = 'catppuccin_mocha'
 
 [os]
 disabled = false
-style = "bg:red fg:crust"
+format = "[─](fg:overlay0)[](fg:red)[ $symbol ](fg:crust bg:red)[](fg:red)"
 
 [os.symbols]
 Windows = ""
@@ -57,14 +36,12 @@ RedHatEnterprise = "󱄛"
 
 [username]
 show_always = true
-style_user = "bg:red fg:crust"
-style_root = "bg:red fg:crust"
-format = '[ $user]($style)'
+format = "[-](fg:overlay0)[](fg:red)[ $user ](fg:crust bg:red)[](fg:red)"
 
 [directory]
-style = "bg:peach fg:crust"
-format = "[ $path ]($style)"
+format = "[-](fg:overlay0)[](fg:peach)[](fg:crust bg:peach)[](fg:peach bg:base)[ $path](bg:base)[](fg:base)"
 truncation_length = 3
+truncate_to_repo = false
 truncation_symbol = "…/"
 
 [directory.substitutions]
@@ -76,91 +53,81 @@ truncation_symbol = "…/"
 
 [git_branch]
 symbol = ""
-style = "bg:yellow"
-format = '[[ $symbol $branch ](fg:crust bg:yellow)]($style)'
+format = "[-](fg:overlay0)[](fg:yellow)[ $symbol ](fg:crust bg:yellow)[](fg:yellow bg:base)[ $branch](bg:base)[](fg:base)"
 
 [git_status]
-style = "bg:yellow"
-format = '[[($all_status$ahead_behind )](fg:crust bg:yellow)]($style)'
+format = "[-](fg:overlay0)[](fg:yellow)[](fg:crust bg:yellow)[](fg:yellow bg:base)[($all_status$ahead_behind )](bg:base)[](fg:base)"
+
+[status]
+disabled = false
+format = "[-](fg:overlay0)[](fg:yellow)[](fg:crust bg:yellow)[](fg:yellow bg:base)[ $status](bg:base)[](fg:base)"
+pipestatus = true
+pipestatus_separator = "-"
+pipestatus_segment_format = "$status"
+pipestatus_format = "[─](fg:overlay0)[](fg:yellow)[](fg:crust bg:yellow)[](fg:yellow bg:base)[ $pipestatus](bg:base)[](fg:base)"
 
 [nodejs]
 symbol = ""
-style = "bg:green"
-format = '[[ $symbol( $version) ](fg:crust bg:green)]($style)'
+format = "[─](fg:overlay0)[](fg:green)[ $symbol ](fg:crust bg:green)[](fg:green bg:base)[( $version)](bg:base)[](fg:base)"
 
 [c]
 symbol = " "
-style = "bg:green"
-format = '[[ $symbol( $version) ](fg:crust bg:green)]($style)'
+format = "[-](fg:overlay0)[](fg:green)[ $symbol ](fg:crust bg:green)[](fg:green bg:base)[( $version)](bg:base)[](fg:base)"
 
 [rust]
 symbol = ""
-style = "bg:green"
-format = '[[ $symbol( $version) ](fg:crust bg:green)]($style)'
+format = "[-](fg:overlay0)[](fg:green)[ $symbol ](fg:crust bg:green)[](fg:green bg:base)[( $version)](bg:base)[](fg:base)"
 
 [golang]
 symbol = ""
-style = "bg:green"
-format = '[[ $symbol( $version) ](fg:crust bg:green)]($style)'
+format = "[-](fg:overlay0)[](fg:green)[ $symbol ](fg:crust bg:green)[](fg:green bg:base)[( $version)](bg:base)[](fg:base)"
 
 [php]
 symbol = ""
-style = "bg:green"
-format = '[[ $symbol( $version) ](fg:crust bg:green)]($style)'
+format = "[-](fg:overlay0)[](fg:green)[ $symbol ](fg:crust bg:green)[](fg:green bg:base)[( $version)](bg:base)[](fg:base)"
 
 [java]
 symbol = " "
-style = "bg:green"
-format = '[[ $symbol( $version) ](fg:crust bg:green)]($style)'
+format = "[-](fg:overlay0)[](fg:green)[ $symbol ](fg:crust bg:green)[](fg:green bg:base)[( $version)](bg:base)[](fg:base)"
 
 [kotlin]
 symbol = ""
-style = "bg:green"
-format = '[[ $symbol( $version) ](fg:crust bg:green)]($style)'
+format = "[-](fg:overlay0)[](fg:green)[ $symbol ](fg:crust bg:green)[](fg:green bg:base)[( $version)](bg:base)[](fg:base)"
 
 [haskell]
 symbol = ""
-style = "bg:green"
-format = '[[ $symbol( $version) ](fg:crust bg:green)]($style)'
+format = "[-](fg:overlay0)[](fg:green)[ $symbol ](fg:crust bg:green)[](fg:green bg:base)[( $version)](bg:base)[](fg:base)"
 
 [python]
 symbol = ""
-style = "bg:green"
-format = '[[ $symbol( $version)(\(#$virtualenv\)) ](fg:crust bg:green)]($style)'
+format = '[-](fg:overlay0)[](fg:green)[ $symbol ](fg:crust bg:green)[](fg:green bg:base)[( $version)(\(#$virtualenv\)) ](bg:base)[](fg:base)'
 
 [docker_context]
 symbol = ""
-style = "bg:sapphire"
-format = '[[ $symbol( $context) ](fg:crust bg:sapphire)]($style)'
+format = "[-](fg:overlay0)[](fg:sapphire)[ $symbol ](fg:crust bg:sapphire)[](fg:sapphire bg:base)[( $context)](bg:base)[](fg:sapphire)"
 
 [conda]
 symbol = "  "
-style = "fg:crust bg:sapphire"
-format = '[$symbol$environment ]($style)'
+format = "[-](fg:overlay0)[](fg:sapphire)[ $symbol$environment ](fg:crust bg:sapphire)[](fg:sapphire)"
 ignore_base = false
 
 [time]
 disabled = false
 time_format = "%R"
-style = "bg:lavender"
-format = '[[  $time ](fg:crust bg:lavender)]($style)'
+format = "[-](fg:overlay0)[](fg:lavender)[](fg:crust bg:lavender)[](fg:lavender bg:base)[ $time](bg:base)[](fg:base)"
 
 [line_break]
-disabled = true
+disabled = false
 
 [character]
 disabled = false
-success_symbol = '[❯](bold fg:green)'
-error_symbol = '[❯](bold fg:red)'
-vimcmd_symbol = '[❮](bold fg:green)'
-vimcmd_replace_one_symbol = '[❮](bold fg:lavender)'
-vimcmd_replace_symbol = '[❮](bold fg:lavender)'
-vimcmd_visual_symbol = '[❮](bold fg:yellow)'
+success_symbol = '[❯](fg:green)'
+error_symbol = '[❯](fg:red)'
 
 [cmd_duration]
 show_milliseconds = true
-format = " in $duration "
-style = "bg:lavender"
+format = "[-](fg:overlay0)[](fg:lavender)[](fg:crust bg:lavender)[](fg:lavender bg:base)[ in $duration](bg:base)[](fg:base)"
+min_time = 1000
 disabled = false
 show_notifications = false
 min_time_to_notify = 45000
@@ -276,3 +243,4 @@ surface0 = "#363a4f"
 base = "#24273a"
 mantle = "#1e2030"
 crust = "#181926"
+
