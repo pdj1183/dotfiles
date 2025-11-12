@@ -120,9 +120,6 @@ source <(carapace _carapace)
 
 
 # ----- Transient-prompt -----
-
-# Configure transient prompt with Zsh prompt expansion and Catppuccin colors
-#TRANSIENT_PROMPT_TRANSIENT_PROMPT='%F{#fab387}%~%f %F{#f9e2af}$GIT_PROMPT_KIT_SYMBOL_BRANCH%f$GIT_PROMPT_KIT_STATUS %F{#a6e3a1}❯%f '
 GIT_PROMPT_KIT_COLOR_FAILED="#f38ba8"
 GIT_PROMPT_KIT_COLOR_HEAD="#f9e2af"
 GIT_PROMPT_KIT_COLOR_SUCCEEDED="#a6e3a1"
@@ -132,6 +129,5 @@ GIT_PROMPT_KIT_SYMBOL_CHAR_NORMAL=❯
 TRANSIENT_PROMPT_TRANSIENT_PROMPT=' %F{#e78284}󰀵 %F{#fab387}  %F{#cdd6f4}%~%f %F{#f9e2af}${GIT_PROMPT_KIT_HEAD:+ $GIT_PROMPT_KIT_HEAD} '
 TRANSIENT_PROMPT_TRANSIENT_PROMPT+='%F{#a6e3a1}$GIT_PROMPT_KIT_CHAR '
 
-source /opt/homebrew/share/git-prompt-kit/git-prompt-kit.zsh
 source /opt/homebrew/share/zsh-transient-prompt/transient-prompt.zsh-theme
 
