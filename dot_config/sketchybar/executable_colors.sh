@@ -13,12 +13,12 @@ GREY=0xff939ab7
 TRANSPARENT=0x00000000
 
 # General bar colors
-BAR_COLOR=0xcc24273a #$GREY # Grey bar
+BAR_COLOR=0xb30b1120 # 70% opacity (#0b1120 matches terminal background)
 ICON_COLOR=$WHITE # Color of all icons
 LABEL_COLOR=$WHITE # Color of all labels
 
-POPUP_BACKGROUND_COLOR=$BLACK
-POPUP_BORDER_COLOR=$WHITE
+POPUP_BACKGROUND_COLOR=0xb30b1120 # Match bar transparency
+POPUP_BORDER_COLOR=$BLUE # Softer border color
 
 SHADOW_COLOR=$BLACK
 
