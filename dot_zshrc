@@ -104,6 +104,8 @@ alias lg='lazygit'
 # ----- Local overrides -----
 [[ -r "$HOME/.zshrc.local" ]] && source "$HOME/.zshrc.local"
 
+export EDITOR=nvim
+
 # Aerospace + fzf helper
 ff() {
   aerospace list-windows --all | \
